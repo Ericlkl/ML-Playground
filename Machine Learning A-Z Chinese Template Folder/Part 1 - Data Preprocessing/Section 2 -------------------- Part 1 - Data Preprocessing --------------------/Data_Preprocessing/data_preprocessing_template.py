@@ -14,8 +14,21 @@ y = dataset.iloc[:, 3].values
 # Replace Nan to mean
 from sklearn.preprocessing import Imputer
 imputer = Imputer(missing_values = 'NaN', strategy= 'mean', axis= 0 )
-imputer = Imputer.fit(X[:, 1:3 ])
+imputer = imputer.fit(X[:, 1:3 ])
 X[:,1:3] = imputer.transform(X[:, 1 : 3])
+
+# Encoding categorical data
+# Transform some meaningful data to number in order to calculate in the function later
+# String is not good to perform in mathematic ways.
+# Therefore, tranform it to number will do it very well
+from sklearn.preprocessing import LabelEncoder, OneHotEncoder
+labelencoder_X = LabelEncoder()
+X[:, 0] = labelencoder_X.fit_transform(X[:, 0])   # To simple number
+onehotencoder = OneHotEncoder(categorical_features = [0])
+X = onehotencoder.fit_transform(X).toarray()
+
+labelencoder_y = LabelEncoder()
+y = labelencoder_y.fit_transform(y)   # To simple number
 
 # Splitting the dataset into the Training set and Test set
 from sklearn.model_selection import train_test_split
