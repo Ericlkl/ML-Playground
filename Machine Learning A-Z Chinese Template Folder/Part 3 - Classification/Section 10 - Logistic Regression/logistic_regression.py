@@ -21,12 +21,20 @@ X_train = sc_X.fit_transform(X_train)
 X_test = sc_X.transform(X_test)
 
 # Fitting Logistic Regression to the Training set
-
+from sklearn.linear_model import LogisticRegression
+classifier = LogisticRegression(random_state = 0)
+classifier.fit(X_train, y_train)
 
 # Predicting the Test set results
-
+y_pred = classifier.predict(X_test)
 
 # Making the Confusion Matrix
+# Confusion Matrix records the true and false for our predictor
+# [65 3]  65 and 24 is the correct case number
+# [8 24]  8 and 3 is the wrong case number in total there is 100
+from sklearn.metrics import confusion_matrix
+cm = confusion_matrix(y_test, y_pred)
+
 
 # Visualising the Training set results
 
