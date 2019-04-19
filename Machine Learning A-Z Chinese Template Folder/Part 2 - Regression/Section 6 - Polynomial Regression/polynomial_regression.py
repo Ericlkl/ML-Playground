@@ -27,6 +27,7 @@ lin_reg.fit(X, y)
 
 # Fitting Polynomial Regression to the dataset
 from sklearn.preprocessing import PolynomialFeatures
+# Degree = X^1 to X^? exponential?
 poly_reg = PolynomialFeatures(degree = 4)
 X_poly = poly_reg.fit_transform(X)
 lin_reg_2 = LinearRegression()
